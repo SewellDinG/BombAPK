@@ -69,7 +69,7 @@ class BombAPK(object):
                 cmd = "java -jar bin/apktool.jar b " + self.Input + " -o " + self.Output
             else:
                 cmd = "java -jar bin/apktool.jar b " + \
-                    self.Input + " -o " + self.Input[:-4] + "-debug.apk"
+                    self.Input + " -o " + self.Input[:-6] + "-debug.apk"
             self.run(cmd)
         elif self.ToolID == "3":
             if self.Output != None:
