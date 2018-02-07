@@ -12,6 +12,7 @@
 - JAVA反编译：jd-gui
 - APK优化：zipalign
 - 入口Activity：AmStart
+- Unicode互转汉字：Unicode
 
 ## 使用
 
@@ -37,6 +38,7 @@
             6 = jd-gui
             7 = zipalign
             10 = AmStart
+            11 = Unicode
     
 usage: BombAPK.py [-h] [-t {0,1,2,3,4,5,6,7,10}] [-i INPUT] [-o OUTPUT] [-v]
 
@@ -191,5 +193,27 @@ Verification succesful
 [+] Current command: bash bin/AmStart crackme.apk
 adb shell am start -D -n com.mzheng.crackme1/com.mzheng.crackme1.MainActivity
 [+] This command completed execution.
+```
+
+Unicode转汉字：终端下反斜线属于转义符，输入Unicode时记得引号
+
+```
+[Go0s]: ~/Desktop/BombAPK ✗ master
+➜  python BombAPK.py -t 11 -i "\u6d4b\u8bd5"
+[+] BombBombAPK ready to start.
+[+] Current command's input: \u6d4b\u8bd5
+[!] Unicode to Chinese, pay attention to quotation marks
+测试
+```
+
+汉字转Unicode：
+
+```
+[Go0s]: ~/Desktop/BombAPK ✗ master
+➜  python BombAPK.py -t 11 -i 测试 
+[+] BombBombAPK ready to start.
+[+] Current command's input: 测试
+[!] Unicode to Chinese, pay attention to quotation marks
+\u6d4b\u8bd5
 ```
 
