@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
+import sys
 import argparse
 import subprocess
 
@@ -66,25 +67,28 @@ class BombAPK(object):
             print(Color.WARNING +
                   "[-] Please look at the help document [-h]" + Color.ENDC)
         elif self.ToolID == "1":
+            tool = sys.path[0] + "/bin/apktool.jar"
             if self.Output != None:
-                cmd = "java -jar bin/apktool.jar d -f " + self.Input + " -o " + self.Output
+                cmd = "java -jar " + tool + " d -f " + self.Input + " -o " + self.Output
             else:
-                cmd = "java -jar bin/apktool.jar d -f " + \
+                cmd = "java -jar " + tool + " d -f " + \
                     self.Input + " -o " + self.Input[:-4] + "-debug"
             self.run(cmd)
         elif self.ToolID == "2":
+            tool = sys.path[0] + "/bin/apktool.jar"
             if self.Output != None:
-                cmd = "java -jar bin/apktool.jar b " + self.Input + " -o " + self.Output
+                cmd = "java -jar " + tool + " b " + self.Input + " -o " + self.Output
             else:
-                cmd = "java -jar bin/apktool.jar b " + \
+                cmd = "java -jar " + tool + " b " + \
                     self.Input + " -o " + self.Input[:-6] + "-debug.apk"
             self.run(cmd)
         elif self.ToolID == "3":
+            tool = sys.path[0] + "/bin/signapk"
             if self.Output != None:
-                cmd = "java -jar bin/signapk.jar bin/testkey.x509.pem bin/testkey.pk8 " + \
+                cmd = "java -jar " + tool + "/signapk.jar " + tool + "/testkey.x509.pem " + tool + "/testkey.pk8 " + \
                     self.Input + " " + self.Output
             else:
-                cmd = "java -jar bin/signapk.jar bin/testkey.x509.pem bin/testkey.pk8 " + \
+                cmd = "java -jar " + tool + "/signapk.jar " + tool + "/testkey.x509.pem " + tool + "/testkey.pk8 " + \
                     self.Input + " " + self.Input[:-4] + "-S.apk"
             self.run(cmd)
         elif self.ToolID == "4":
@@ -95,26 +99,30 @@ class BombAPK(object):
                     " classes.dex -d " + self.Input[:-4] + "-dex"
             self.run(cmd)
         elif self.ToolID == "5":
+            tool = sys.path[0] + "/bin/dex2jar/d2j-dex2jar.sh"
             if self.Output != None:
-                cmd = "bash bin/dex2jar/d2j-dex2jar.sh --force " + \
+                cmd = "bash " + tool + " --force " + \
                     self.Input + " -o " + self.Output
             else:
-                cmd = "bash bin/dex2jar/d2j-dex2jar.sh --force " + \
+                cmd = "bash " + tool + " --force " + \
                     self.Input + " -o " + self.Input[:-4] + ".jar"
             self.run(cmd)
         elif self.ToolID == "6":
-            cmd = "java -jar bin/jd-gui.jar " + self.Input
+            tool = sys.path[0] + "/bin/jd-gui.jar"
+            cmd = "java -jar " + tool + " " + self.Input
             self.run(cmd)
         elif self.ToolID == "7":
+            tool = sys.path[0] + "/bin/zipalign"
             if self.Output != None:
-                cmd = "bin/zipalign -f -v 4 " + \
+                cmd = tool + " -f -v 4 " + \
                     self.Input + " " + self.Output
             else:
-                cmd = "bin/zipalign -f -v 4 " + \
+                cmd = tool + " -f -v 4 " + \
                     self.Input + " " + self.Input[:-4] + "-Z.apk"
             self.run(cmd)
         elif self.ToolID == "10":
-            cmd = "bash bin/AmStart " + self.Input
+            tool = sys.path[0] + "/bin/AmStart"
+            cmd = "bash " + tool + " " + self.Input
             self.run(cmd)
         elif self.ToolID == "11":
             ucstr = self.Input
