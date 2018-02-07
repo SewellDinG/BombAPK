@@ -41,6 +41,14 @@ class BombAPK(object):
         # try捕捉处理异常
         self.flag = 1
 
+    def u2c(self, ustr):
+        self.ustr = ustr
+        print(self.ustr.encode('utf-8').decode('unicode_escape'))
+
+    def c2u(self, cstr):
+        self.cstr = cstr
+        print(self.cstr.decode('utf-8').encode('unicode_escape'))
+
     def main(self):
         # 输入信息
         if self.Input != None:
@@ -108,6 +116,14 @@ class BombAPK(object):
         elif self.ToolID == "10":
             cmd = "bash bin/AmStart " + self.Input
             self.run(cmd)
+        elif self.ToolID == "11":
+            ucstr = self.Input
+            print(Color.WARNING +
+                  "[!] Unicode to Chinese, pay attention to quotation marks" + Color.ENDC)
+            if "\\" in ucstr:
+                self.u2c(ucstr)
+            else:
+                self.c2u(ucstr)
         # 结束提示
         if self.flag == 1:
             print(Color.HEADER +
@@ -133,13 +149,14 @@ if __name__ == '__main__':
             6 = jd-gui
             7 = zipalign
             10 = AmStart
+            11 = Unicode
     '''
     print(Color.OKYELLOW + banner + Color.ENDC)
     parser = argparse.ArgumentParser(
         description="Some common assembler / disassembler tools in Android development")
     # 可选参数
     parser.add_argument('-t', '--tool', dest="ToolID",
-                        help="Selectable tools", type=str, choices=['0', '1', '2', '3', '4', '5', '6', '7', '10'], default='0')
+                        help="Selectable tools", type=str, choices=['0', '1', '2', '3', '4', '5', '6', '7', '10', '11'], default='0')
     parser.add_argument('-i', '--input', dest="Input",
                         help="Source file or source directory", type=str)
     parser.add_argument('-o', '--output', dest="Output",
