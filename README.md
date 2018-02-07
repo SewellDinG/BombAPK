@@ -16,6 +16,14 @@
 
 ## 使用
 
+只需要记住两个参数即可：
+
+`-t`：指定利用工具的ID
+
+`-i`：指定输入的文件或目录
+
+`-o`：指定输出的文件或目录（自带默认）
+
 查看帮助文档：
 
 ```
@@ -99,7 +107,7 @@ I: Copying original files...
 ➜  python BombAPK.py -t 2 -i crackme-debug 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1-debug
-[+] Current command: java -jar /Users/go0s/OtherAPP/Git/BombAPK/bin/apktool.jar b crackme1-debug -o crackme1-debug.apk
+[+] Current command: java -jar /Users/Go0s/OtherAPP/Git/BombAPK/bin/apktool.jar b crackme1-debug -o crackme1-debug.apk
 I: Using Apktool 2.3.1
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -117,7 +125,7 @@ APK签名：
 ➜  python BombAPK.py -t 3 -i crackme.apk 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1.apk
-[+] Current command: java -jar /Users/go0s/Desktop/BombAPK/bin/signapk/signapk.jar /Users/go0s/Desktop/BombAPK/bin/signapk/testkey.x509.pem /Users/go0s/Desktop/BombAPK/bin/signapk/testkey.pk8 crackme1.apk crackme1-S.apk
+[+] Current command: java -jar /Users/Go0s/Desktop/BombAPK/bin/signapk/signapk.jar /Users/Go0s/Desktop/BombAPK/bin/signapk/testkey.x509.pem /Users/Go0s/Desktop/BombAPK/bin/signapk/testkey.pk8 crackme1.apk crackme1-S.apk
 [+] This command completed execution.
 ```
 
@@ -141,7 +149,7 @@ dex转jar：
 ➜  python BombAPK.py -t 5 -i crackme-dex/classes.dex 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1-dex/classes.dex
-[+] Current command: bash /Users/go0s/OtherAPP/Git/BombAPK/bin/dex2jar/d2j-dex2jar.sh --force crackme1-dex/classes.dex -o crackme1-dex/classes.jar
+[+] Current command: bash /Users/Go0s/OtherAPP/Git/BombAPK/bin/dex2jar/d2j-dex2jar.sh --force crackme1-dex/classes.dex -o crackme1-dex/classes.jar
 dex2jar crackme1-dex/classes.dex -> crackme1-dex/classes.jar
 [+] This command completed execution.
 ```
@@ -153,7 +161,7 @@ JAVA反编译：
 ➜  python BombAPK.py -t 6 -i crackme-dex/classes.jar 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1-dex/classes.jar
-[+] Current command: java -jar /Users/go0s/OtherAPP/Git/BombAPK/bin/jd-gui.jar crackme1-dex/classes.jar
+[+] Current command: java -jar /Users/Go0s/OtherAPP/Git/BombAPK/bin/jd-gui.jar crackme1-dex/classes.jar
 [+] This command completed execution.
 ```
 
@@ -164,7 +172,7 @@ APK优化：
 ➜  python BombAPK.py -t 7 -i crackme.apk
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1.apk
-[+] Current command: /Users/go0s/OtherAPP/Git/BombAPK/bin/zipalign -f -v 4 crackme1.apk crackme1-Z.apk
+[+] Current command: /Users/Go0s/OtherAPP/Git/BombAPK/bin/zipalign -f -v 4 crackme1.apk crackme1-Z.apk
 Verifying alignment of crackme1-Z.apk (4)...
       62 res/layout/activity_main.xml (OK - compressed)
      554 res/menu/main.xml (OK - compressed)
@@ -190,7 +198,7 @@ Verification succesful
 ➜  python BombAPK.py -t 10 -i crackme.apk
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme1.apk
-[+] Current command: bash /Users/go0s/OtherAPP/Git/BombAPK/bin/AmStart crackme1.apk
+[+] Current command: bash /Users/Go0s/OtherAPP/Git/BombAPK/bin/AmStart crackme1.apk
 adb shell am start -D -n com.mzheng.crackme1/com.mzheng.crackme1.MainActivity
 [+] This command completed execution.
 ```
