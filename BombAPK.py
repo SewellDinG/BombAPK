@@ -128,14 +128,16 @@ class BombAPK(object):
             if self.Output != None:
                 cmd = tool + " " + self.Input + " -d " + self.Output
             else:
-                cmd = tool + " " + self.Input + " -d dex-java "
+                cmd = tool + " " + self.Input + \
+                    " -d " + self.Input[:-4] + "-java"
             self.run(cmd)
         elif self.ToolID == "9":
             tool = sys.path[0] + "/bin/jadx/bin/jadx"
             if self.Output != None:
                 cmd = tool + " -e " + self.Input + " -d " + self.Output
             else:
-                cmd = tool + " -e " + self.Input
+                cmd = tool + " -e " + self.Input + \
+                    " -d " + self.Input[:-4] + "-gradle"
             self.run(cmd)
         elif self.ToolID == "10":
             tool = sys.path[0] + "/bin/AmStart"
