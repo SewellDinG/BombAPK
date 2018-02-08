@@ -78,6 +78,14 @@ class BombAPK(object):
             cmd = tool + " -f -v 4 " + self.Input + \
                 " " + self.Input[:-4] + "-Z.apk"
             self.run(cmd)
+        elif self.ToolID == "8":
+            tool = sys.path[0] + "/bin/jadx/bin/jadx"
+            cmd = tool + " " + self.Input + " -d dex-java "
+            self.run(cmd)
+        elif self.ToolID == "9":
+            tool = sys.path[0] + "/bin/jadx/bin/jadx"
+            cmd = tool + " -e " + self.Input
+            self.run(cmd)
         elif self.ToolID == "10":
             tool = sys.path[0] + "/bin/AmStart"
             cmd = "bash " + tool + " " + self.Input
@@ -114,6 +122,8 @@ if __name__ == '__main__':
             5 = dex2jar
             6 = jd-gui
             7 = zipalign
+            8 = jadx dex2java
+            9 = jadx Gradle
             10 = AmStart
             11 = Unicode
     '''
