@@ -11,6 +11,7 @@
 - dex转jar：dex2jar
 - JAVA反编译：jd-gui
 - APK优化：zipalign
+- dex转java：jadx
 - 入口Activity：AmStart
 - Unicode互转汉字：Unicode
 
@@ -45,6 +46,8 @@
             5 = dex2jar
             6 = jd-gui
             7 = zipalign
+            8 = jadx dex2java
+            9 = jadx Gradle
             10 = AmStart
             11 = Unicode
     
@@ -55,7 +58,7 @@ Some common assembler / disassembler tools in Android development
 
 optional arguments:
   -h, --help            show this help message and exit
-  -t {0,1,2,3,4,5,6,7,10,11}, --tool {0,1,2,3,4,5,6,7,10,11}
+  -t {0,1,2,3,4,5,6,7,10,11}, --tool {0,1,2,3,4,5,6,7,8,9,10,11}
                         Selectable tools
   -i INPUT, --input INPUT
                         Source file or source directory
@@ -69,11 +72,13 @@ optional arguments:
 ```
 [Go0s]: ~/Desktop/BombAPK ✗ master
 ➜  python BombAPK.py -v
-dex2jar : 2.1
-jd_gui : 1.4.0
-smali : 2.2.2
-baksmali : 2.2.2
-apktool : 2.3.1
+Tool's version:
+  dex2jar : 2.1
+  apktool : 2.3.1
+  baksmali : 2.2.2
+  jd_gui : 1.4.0
+  jadx : 0.7.0
+  smali : 2.2.2
 [-] The specified tool ID number
 [-] Please look at the help document [-h]
 ```
@@ -107,7 +112,7 @@ I: Copying original files...
 ➜  python BombAPK.py -t 2 -i crackme-debug 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme-debug
-[+] Current command: java -jar /Users/Go0s/OtherAPP/Git/BombAPK/bin/apktool.jar b crackme-debug -o crackme-debug.apk
+[+] Current command: java -jar /Users/Go0s/Desktop/BombAPK/bin/apktool.jar b crackme-debug -o crackme-debug.apk
 I: Using Apktool 2.3.1
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -149,7 +154,7 @@ dex转jar：
 ➜  python BombAPK.py -t 5 -i crackme-dex/classes.dex 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme-dex/classes.dex
-[+] Current command: bash /Users/Go0s/OtherAPP/Git/BombAPK/bin/dex2jar/d2j-dex2jar.sh --force crackme-dex/classes.dex -o crackme-dex/classes.jar
+[+] Current command: bash /Users/Go0s/Desktop/BombAPK/bin/dex2jar/d2j-dex2jar.sh --force crackme-dex/classes.dex -o crackme-dex/classes.jar
 dex2jar crackme-dex/classes.dex -> crackme-dex/classes.jar
 [+] This command completed execution.
 ```
@@ -161,7 +166,7 @@ JAVA反编译：
 ➜  python BombAPK.py -t 6 -i crackme-dex/classes.jar 
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme-dex/classes.jar
-[+] Current command: java -jar /Users/Go0s/OtherAPP/Git/BombAPK/bin/jd-gui.jar crackme-dex/classes.jar
+[+] Current command: java -jar /Users/Go0s/Desktop/BombAPK/bin/jd-gui.jar crackme-dex/classes.jar
 [+] This command completed execution.
 ```
 
@@ -172,7 +177,7 @@ APK优化：
 ➜  python BombAPK.py -t 7 -i crackme.apk
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme.apk
-[+] Current command: /Users/Go0s/OtherAPP/Git/BombAPK/bin/zipalign -f -v 4 crackme.apk crackme-Z.apk
+[+] Current command: /Users/Go0s/Desktop/BombAPK/bin/zipalign -f -v 4 crackme.apk crackme-Z.apk
 Verifying alignment of crackme-Z.apk (4)...
       62 res/layout/activity_main.xml (OK - compressed)
      554 res/menu/main.xml (OK - compressed)
@@ -191,6 +196,20 @@ Verification succesful
 [+] This command completed execution.
 ```
 
+dex转java：
+
+```
+[Go0s]: ~/Desktop/BombAPK ✗ master*
+➜  python BombAPK.py -t 8 -i classes.dex 
+[+] BombBombAPK ready to start.
+[+] Current command's input: classes.dex
+[+] Current command: /Users/Go0s/Desktop/BombAPK/bin/jadx/bin/jadx classes.dex -d dex-java 
+19:07:24 INFO  - loading ...
+19:07:24 INFO  - processing ...
+...
+[+] This command completed execution.
+```
+
 入口Activity：调用aapt
 
 ```
@@ -198,7 +217,7 @@ Verification succesful
 ➜  python BombAPK.py -t 10 -i crackme.apk
 [+] BombBombAPK ready to start.
 [+] Current command's input: crackme.apk
-[+] Current command: bash /Users/Go0s/OtherAPP/Git/BombAPK/bin/AmStart crackme.apk
+[+] Current command: bash /Users/Go0s/Desktop/BombAPK/bin/AmStart crackme.apk
 adb shell am start -D -n com.mzheng.crackme/com.mzheng.crackme.MainActivity
 [+] This command completed execution.
 ```
