@@ -18,7 +18,7 @@ class Color:
 
 class Tools:
     def __init__(self):
-        self.apktool = '2.4.1'
+        self.apktool = '2.5.0'
         self.smali = '2.2.2'
         self.baksmali = '2.2.2'
         self.dex2jar = '2.1'
